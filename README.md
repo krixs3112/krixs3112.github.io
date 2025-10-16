@@ -1,36 +1,37 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+## Krishna Sawale — Personal Website
 
-## Getting Started
+Static portfolio site highlighting Krishna Sawale’s React Native leadership, product experience, and contact channels. The build lives in `docs/` for GitHub Pages hosting and features motion design, responsive layout, and LinkedIn badge integration.
 
-First, run the development server:
+## Tech Stack
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+- **[HTML/CSS](https://developer.mozilla.org/en-US/docs/Web/HTML)** for structure and styling
+- **Vanilla JavaScript** for scroll-triggered animations and accessibility enhancements
+- **GitHub Pages** deployment via the `docs/` directory
+
+## Project Structure
+
+```text
+docs/
+  index.html        # Main portfolio page
+  ks-logo.svg       # Personal monogram logo
+  icons/            # Section iconography
+README.md           # Project overview and contribution guide
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Local Development
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+1. Clone the repository and move into the project folder.
+2. Open `docs/index.html` in a browser (e.g., using the Live Server extension) to preview changes.
+3. Edit HTML/CSS/JS directly in `docs/`. No additional build tooling is required.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Deployment
 
-## Learn More
+- Pushes to `main` serve `docs/` through GitHub Pages.
+- After changes, verify `docs/index.html` locally, commit, and `git push`. GitHub Pages updates automatically.
 
-To learn more about Next.js, take a look at the following resources:
+## Contributing & Maintenance
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- Keep animations performant and respect `prefers-reduced-motion`.
+- Ensure new sections remain keyboard accessible and responsive across breakpoints.
+- Update meta tags (`title`, `description`) if positioning or branding shifts.
+- When replacing assets, optimize SVG/PNG sizes for fast loads.
