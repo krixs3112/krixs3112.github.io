@@ -5,11 +5,26 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Krishna Sawale | React Native Engineer</title>
   <meta name="description" content="Portfolio of Krishna Sawale, a React Native engineer building high-impact mobile products across healthcare, hospitality, mobility, and fintech." />
+  <link rel="icon" type="image/svg+xml" href="ks-logo.svg" />
+  <link rel="alternate icon" type="image/png" href="ks-logo.svg" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@500;600&display=swap" rel="stylesheet" />
   <style>
-    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
-
     :root {
       color-scheme: dark;
+      --bg: #070a15;
+      --surface: #101627;
+      --surface-soft: rgba(16, 22, 39, 0.75);
+      --surface-glass: rgba(16, 22, 39, 0.55);
+      --border: rgba(148, 163, 184, 0.22);
+      --accent-1: #22d3ee;
+      --accent-2: #8b5cf6;
+      --accent-3: #f97316;
+      --text-strong: #f8fafc;
+      --text-mid: #cbd5f5;
+      --text-soft: #95a4d6;
+      --max-width: 1160px;
     }
 
     *, *::before, *::after {
@@ -18,292 +33,405 @@
 
     body {
       margin: 0;
-      font-family: 'Inter', sans-serif;
-      background: #0b1220;
-      color: #e2e8f0;
+      font-family: 'Plus Jakarta Sans', 'Segoe UI', sans-serif;
+      background: radial-gradient(circle at top, rgba(34, 211, 238, 0.08), transparent 55%) var(--bg);
+      color: var(--text-mid);
       line-height: 1.7;
       min-height: 100vh;
       scroll-behavior: smooth;
+      position: relative;
+      overflow-x: hidden;
     }
 
     a {
-      color: #38bdf8;
+      color: var(--accent-1);
       text-decoration: none;
-      transition: color 0.2s ease, opacity 0.2s ease;
+      transition: opacity 0.2s ease, color 0.2s ease;
     }
 
     a:hover {
-      color: #f8fafc;
+      color: var(--text-strong);
     }
 
-    h1, h2, h3 {
-      font-weight: 600;
-      line-height: 1.2;
-      color: #f8fafc;
+    h1, h2, h3, h4 {
+      font-family: 'Space Grotesk', 'Plus Jakarta Sans', sans-serif;
+      color: var(--text-strong);
+      margin: 0;
     }
 
-    h1 { font-size: clamp(2.75rem, 4vw, 3.75rem); }
-    h2 { font-size: clamp(2rem, 3vw, 2.75rem); }
-    h3 { font-size: clamp(1.25rem, 2vw, 1.6rem); }
+    h1 { font-size: clamp(2.6rem, 4vw, 4.1rem); line-height: 1.1; }
+    h2 { font-size: clamp(2rem, 3vw, 3rem); }
+    h3 { font-size: clamp(1.25rem, 2vw, 1.8rem); }
+    h4 { font-size: 1.1rem; font-weight: 600; }
 
-    p { color: #cbd5f5; font-size: 1.02rem; }
+    p { margin: 0; color: var(--text-mid); }
 
-    .backdrop {
+    .halo {
       position: fixed;
       inset: 0;
-      overflow: hidden;
+      pointer-events: none;
       z-index: -2;
+      overflow: hidden;
     }
 
-    .blob {
+    .halo span {
       position: absolute;
-      width: 380px;
-      height: 380px;
+      width: 420px;
+      height: 420px;
       border-radius: 50%;
-      filter: blur(140px);
-      opacity: 0.55;
-      transform: translate(-50%, -50%);
+      filter: blur(180px);
+      opacity: 0.4;
+      animation: float 16s ease-in-out infinite;
     }
 
-    .blob.one { background: #22d3ee; top: 10%; left: 20%; }
-    .blob.two { background: #8b5cf6; top: 30%; right: 0; transform: translate(20%, -30%); }
-    .blob.three { background: #34d399; bottom: -10%; left: 35%; }
+    .halo span:nth-child(1) {
+      background: var(--accent-1);
+      top: -120px;
+      left: -80px;
+    }
+
+    .halo span:nth-child(2) {
+      background: var(--accent-2);
+      top: 40%;
+      right: -180px;
+      animation-delay: 4s;
+    }
+
+    .halo span:nth-child(3) {
+      background: #10b981;
+      bottom: -160px;
+      left: 25%;
+      animation-delay: 8s;
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translate3d(0,0,0) scale(1); }
+      50% { transform: translate3d(40px, -30px, 0) scale(1.08); }
+    }
 
     .page {
-      max-width: 1120px;
+      max-width: var(--max-width);
       margin: 0 auto;
-      padding: 56px 24px 96px;
-      position: relative;
-      z-index: 1;
+      padding: 56px 28px 112px;
+    }
+
+    header {
+      display: flex;
+      flex-direction: column;
+      gap: 72px;
     }
 
     nav {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      padding: 16px 24px;
-      border-radius: 999px;
-      border: 1px solid rgba(255, 255, 255, 0.12);
-      background: rgba(15, 23, 42, 0.65);
-      backdrop-filter: blur(18px);
       gap: 24px;
-      flex-wrap: wrap;
+      padding: 18px 26px;
+      border-radius: 999px;
+      background: linear-gradient(120deg, rgba(34, 211, 238, 0.12), rgba(16, 22, 39, 0.55));
+      border: 1px solid rgba(148, 163, 184, 0.2);
+      backdrop-filter: blur(20px);
+      box-shadow: 0 24px 60px -30px rgba(15, 23, 42, 0.8);
+      position: sticky;
+      top: 24px;
+      z-index: 10;
+      transition: background 0.4s ease, border-color 0.4s ease, box-shadow 0.4s ease, transform 0.4s ease;
+    }
+
+    nav.is-scrolled {
+      background: linear-gradient(120deg, rgba(15, 23, 42, 0.85), rgba(8, 15, 30, 0.9));
+      border-color: rgba(148, 163, 184, 0.3);
+      box-shadow: 0 28px 70px -36px rgba(2, 6, 23, 0.9);
+      transform: translateY(-8px);
     }
 
     .brand {
       display: flex;
       align-items: center;
-      gap: 12px;
+      gap: 16px;
     }
 
     .brand img {
-      width: 42px;
-      height: 42px;
+      width: 46px;
+      height: 46px;
+      filter: drop-shadow(0 8px 18px rgba(34, 211, 238, 0.45));
     }
 
-    .brand span {
-      font-size: 0.78rem;
-      letter-spacing: 0.32em;
+    .brand-text {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+
+    .brand-text strong {
+      font-size: 0.85rem;
+      letter-spacing: 0.4em;
       text-transform: uppercase;
-      color: #cbd5f5;
-      white-space: nowrap;
+      color: var(--text-soft);
+    }
+
+    .brand-text span {
+      font-size: 0.9rem;
+      color: var(--text-mid);
     }
 
     .nav-links {
       display: flex;
-      gap: 20px;
+      gap: 22px;
       font-weight: 500;
-      font-size: 0.95rem;
+      flex-wrap: wrap;
     }
 
     .nav-links a {
-      color: #cbd5f5;
+      color: var(--text-mid);
+      position: relative;
+      padding-bottom: 4px;
+      outline: none;
     }
 
-    .nav-links a:hover {
-      color: #ffffff;
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      width: 100%;
+      height: 2px;
+      background: linear-gradient(120deg, var(--accent-1), var(--accent-2));
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.3s ease;
+    }
+
+    .nav-links a:hover::after,
+    .nav-links a:focus-visible::after {
+      transform: scaleX(1);
+    }
+
+    .nav-links a:focus-visible {
+      color: var(--text-strong);
     }
 
     .btn {
       display: inline-flex;
       align-items: center;
-      justify-content: center;
-      gap: 8px;
-      font-weight: 600;
-      font-size: 0.96rem;
-      padding: 12px 24px;
+      gap: 10px;
+      padding: 12px 26px;
       border-radius: 999px;
+      font-weight: 600;
+      font-size: 0.95rem;
       border: 1px solid transparent;
-      transition: transform 0.2s ease, box-shadow 0.3s ease, background 0.2s ease, border-color 0.2s ease;
+      transition: transform 0.25s ease, box-shadow 0.3s ease, border-color 0.3s ease;
       cursor: pointer;
-      white-space: nowrap;
-    }
-
-    .btn-primary {
-      background: linear-gradient(120deg, #22d3ee, #a855f7, #4f46e5);
       color: #0f172a;
-      box-shadow: 0 18px 50px -24px rgba(59, 130, 246, 0.65);
     }
 
-    .btn-primary:hover {
+    .btn-accent {
+      background: linear-gradient(135deg, var(--accent-1), var(--accent-2));
+      color: #051018;
+      box-shadow: 0 22px 50px -26px rgba(34, 211, 238, 0.8);
+    }
+
+    .btn-accent:hover {
       transform: translateY(-2px);
-      box-shadow: 0 26px 70px -30px rgba(37, 99, 235, 0.75);
+      box-shadow: 0 30px 68px -32px rgba(59, 130, 246, 0.6);
     }
 
     .btn-outline {
-      border-color: rgba(226, 232, 240, 0.4);
-      color: #f8fafc;
+      border-color: rgba(226, 232, 240, 0.35);
+      color: var(--text-strong);
+      background: transparent;
     }
 
     .btn-outline:hover {
-      border-color: #f8fafc;
+      border-color: var(--accent-1);
+      color: var(--accent-1);
     }
 
-    .btn-light {
-      background: #f8fafc;
-      color: #0f172a;
-    }
-
-    .btn-light:hover {
-      background: #cbd5f5;
+    .btn:focus-visible {
+      outline: none;
+      box-shadow: 0 0 0 3px rgba(34, 211, 238, 0.35);
+      transform: translateY(-2px);
     }
 
     .hero {
-      margin-top: 72px;
       display: grid;
-      gap: 48px;
-      grid-template-columns: 1.05fr 0.95fr;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 56px;
       align-items: center;
     }
 
     .chip {
       display: inline-flex;
       align-items: center;
-      gap: 8px;
-      padding: 8px 16px;
+      gap: 10px;
+      padding: 10px 18px;
       border-radius: 999px;
-      background: rgba(255, 255, 255, 0.12);
-      font-size: 0.68rem;
-      letter-spacing: 0.26em;
+      background: rgba(148, 163, 184, 0.12);
+      letter-spacing: 0.28em;
       text-transform: uppercase;
-      color: #cbd5f5;
+      font-size: 0.68rem;
+      color: var(--text-soft);
     }
 
-    .hero p {
+    .hero > div p {
       max-width: 640px;
-      margin: 18px 0 32px;
-    }
-
-    .hero-actions {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 16px;
+      margin: 24px 0 32px;
+      font-size: 1.08rem;
     }
 
     .hero-card {
-      border-radius: 28px;
-      background: linear-gradient(160deg, rgba(15, 23, 42, 0.95), rgba(17, 24, 39, 0.7));
-      padding: 36px;
-      border: 1px solid rgba(255, 255, 255, 0.08);
-      box-shadow: 0 35px 60px -40px rgba(30, 64, 175, 0.65);
-      text-align: center;
+      position: relative;
+      border-radius: 32px;
+      padding: 38px;
+      background: linear-gradient(160deg, var(--surface-soft), rgba(8, 12, 25, 0.95));
+      border: 1px solid rgba(148, 163, 184, 0.18);
+      box-shadow: 0 42px 75px -48px rgba(34, 197, 94, 0.55);
+      overflow: hidden;
       display: flex;
       flex-direction: column;
-      gap: 18px;
+      gap: 20px;
+      text-align: center;
+    }
+
+    .hero-card::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at top, rgba(34, 211, 238, 0.18), transparent 60%);
+      opacity: 0.8;
+      pointer-events: none;
     }
 
     .hero-card span {
-      font-size: 0.75rem;
+      font-size: 0.78rem;
+      letter-spacing: 0.32em;
       text-transform: uppercase;
-      letter-spacing: 0.3em;
-      color: #cbd5f5;
+      color: var(--text-soft);
     }
 
-    section {
-      margin-top: 120px;
+    .hero-card strong {
+      font-size: 1.7rem;
+      color: var(--text-strong);
+      z-index: 1;
+    }
+
+    .hero-card p {
+      margin: 0 auto;
+      max-width: 320px;
+      z-index: 1;
+    }
+
+    main section {
+      margin-top: 128px;
       display: flex;
       flex-direction: column;
       gap: 32px;
+      scroll-margin-top: 120px;
     }
 
     .section-heading {
       display: flex;
       flex-direction: column;
       gap: 12px;
-      max-width: 680px;
+      max-width: 720px;
+    }
+
+    .section-heading span {
+      font-size: 0.78rem;
+      letter-spacing: 0.32em;
+      text-transform: uppercase;
+      color: var(--text-soft);
     }
 
     .grid {
       display: grid;
-      gap: 24px;
+      gap: 28px;
     }
 
     .grid-3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
     .grid-2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 
     .card {
-      background: rgba(15, 23, 42, 0.6);
-      border: 1px solid rgba(148, 163, 184, 0.18);
-      border-radius: 26px;
+      position: relative;
       padding: 28px;
-      display: flex;
-      flex-direction: column;
-      gap: 18px;
-      transition: transform 0.2s ease, border-color 0.2s ease, background 0.2s ease;
+      border-radius: 30px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      backdrop-filter: blur(14px);
+      transition: transform 0.28s ease, border-color 0.28s ease, box-shadow 0.28s ease;
+      overflow: hidden;
     }
 
-    .card:hover {
+    .card::after {
+      content: '';
+      position: absolute;
+      inset: -120px -80px auto auto;
+      width: 260px;
+      height: 260px;
+      background: radial-gradient(circle, rgba(34, 211, 238, 0.12), transparent 70%);
+      opacity: 0;
+      transition: opacity 0.3s ease, transform 0.3s ease;
+    }
+
+    .card:hover,
+    .card:focus-within {
       transform: translateY(-6px);
-      border-color: rgba(226, 232, 240, 0.35);
-      background: rgba(15, 23, 42, 0.75);
+      border-color: rgba(226, 232, 240, 0.4);
+      box-shadow: 0 32px 60px -40px rgba(15, 23, 42, 0.85);
+    }
+
+    .card:hover::after,
+    .card:focus-within::after {
+      opacity: 1;
+      transform: translate(12px, -18px);
     }
 
     .card-header {
       display: flex;
-      gap: 16px;
       align-items: center;
+      gap: 20px;
+      margin-bottom: 20px;
     }
 
     .icon-bubble {
-      width: 56px;
-      height: 56px;
-      border-radius: 20px;
-      background: rgba(255, 255, 255, 0.12);
+      width: 64px;
+      height: 64px;
+      border-radius: 24px;
+      background: rgba(34, 211, 238, 0.1);
       display: grid;
       place-items: center;
-      padding: 12px;
+      border: 1px solid rgba(34, 211, 238, 0.2);
     }
 
     .icon-bubble img {
-      width: 32px;
-      height: 32px;
+      width: 34px;
+      height: 34px;
     }
 
     .meta {
       display: flex;
       flex-direction: column;
-      gap: 4px;
+      gap: 6px;
     }
 
     .meta span {
-      font-size: 0.85rem;
-      color: #94a3c6;
+      font-size: 0.82rem;
+      color: var(--text-soft);
     }
 
     ul.checklist {
       list-style: none;
       padding: 0;
-      margin: 0;
-      display: flex;
-      flex-direction: column;
+      margin: 22px 0 0;
+      display: grid;
       gap: 12px;
+      color: var(--text-mid);
       font-size: 0.95rem;
     }
 
     ul.checklist li {
       position: relative;
-      padding-left: 22px;
-      color: #e2e8f0;
+      padding-left: 26px;
     }
 
     ul.checklist li::before {
@@ -311,16 +439,18 @@
       position: absolute;
       left: 0;
       top: 10px;
-      width: 8px;
-      height: 8px;
+      width: 10px;
+      height: 10px;
       border-radius: 999px;
-      background: linear-gradient(120deg, #22d3ee, #6366f1);
+      background: linear-gradient(135deg, var(--accent-1), var(--accent-2));
+      box-shadow: 0 0 12px rgba(34, 211, 238, 0.6);
     }
 
     .pill-list {
       display: flex;
       flex-wrap: wrap;
       gap: 12px;
+      margin-top: 20px;
     }
 
     .pill {
@@ -331,48 +461,136 @@
       font-size: 0.7rem;
       letter-spacing: 0.18em;
       text-transform: uppercase;
-      color: #cbd5f5;
+      color: var(--text-soft);
     }
+
+    .timeline {
+      display: grid;
+      gap: 20px;
+    }
+
+    .timeline .card {
+      padding: 24px 28px;
+    }
+
+    .timeline .card::before {
+      content: '';
+      position: absolute;
+      left: 20px;
+      top: 24px;
+      bottom: 24px;
+      width: 2px;
+      background: linear-gradient(to bottom, rgba(34, 211, 238, 0.4), transparent);
+      opacity: 0.8;
+    }
+
+    .timeline h3 {
+      margin-bottom: 12px;
+    }
+
+    .strengths-grid .card {
+      min-height: 160px;
+    }
+
+    .strengths-grid .card:nth-child(3n+1) { border-color: rgba(34, 211, 238, 0.24); }
+    .strengths-grid .card:nth-child(3n+2) { border-color: rgba(139, 92, 246, 0.24); }
+    .strengths-grid .card:nth-child(3n+3) { border-color: rgba(249, 115, 22, 0.24); }
 
     .contact-grid {
       display: grid;
-      gap: 24px;
+      gap: 28px;
       grid-template-columns: 1.05fr 0.95fr;
     }
 
-    .contact-links {
+    .contact-actions {
       display: flex;
-      flex-direction: column;
+      gap: 16px;
+      flex-wrap: wrap;
+      margin-top: 24px;
+    }
+
+    .contact-links {
+      display: grid;
       gap: 18px;
     }
 
-    .contact-links a {
-      font-size: 1.05rem;
-      font-weight: 600;
+    .contact-links span {
+      display: block;
+      font-size: 0.72rem;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      color: var(--text-soft);
+      margin-bottom: 4px;
     }
 
     footer {
-      margin-top: 120px;
+      margin-top: 128px;
       padding-top: 36px;
-      border-top: 1px solid rgba(148, 163, 184, 0.2);
+      border-top: 1px solid rgba(148, 163, 184, 0.16);
       display: flex;
       flex-wrap: wrap;
       justify-content: space-between;
       gap: 18px;
-      font-size: 0.82rem;
-      color: #94a3c6;
+      font-size: 0.85rem;
+      color: var(--text-soft);
     }
 
     footer nav {
-      padding: 0;
-      background: transparent;
-      border: none;
-      gap: 16px;
+      display: flex;
+      gap: 18px;
+      flex-wrap: wrap;
     }
 
-    @media (max-width: 1024px) {
+    [data-animate] {
+      opacity: 0;
+      transform: translateY(26px);
+    }
+
+    .is-visible[data-animate] {
+      animation: fadeUp 0.9s cubic-bezier(0.23, 1, 0.32, 1) forwards;
+      animation-delay: var(--delay, 0s);
+    }
+
+    @keyframes fadeUp {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .hero-card { animation: floatCard 12s ease-in-out infinite; }
+
+    @keyframes floatCard {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-12px); }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.001ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.001ms !important;
+        scroll-behavior: auto !important;
+      }
+    }
+
+    @media (max-width: 1080px) {
+      nav {
+        flex-direction: column;
+        align-items: stretch;
+      }
+
       .hero {
         grid-template-columns: 1fr;
+      }
+
+      .hero-card {
+        max-width: 480px;
+        margin: 0 auto;
+      }
+
+      .grid-3 {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
       }
 
       .contact-grid {
@@ -380,387 +598,418 @@
       }
     }
 
-    @media (max-width: 900px) {
-      .grid-3 {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-      }
-    }
-
-    @media (max-width: 640px) {
+    @media (max-width: 720px) {
       .page {
-        padding: 40px 18px 72px;
+        padding: 40px 18px 96px;
       }
 
       nav {
-        flex-direction: column;
-        align-items: stretch;
-        border-radius: 24px;
+        position: static;
+        border-radius: 28px;
       }
 
-      .nav-links {
-        width: 100%;
-        justify-content: center;
-        flex-wrap: wrap;
-        gap: 16px;
-      }
-
-      .hero {
-        margin-top: 48px;
-      }
-
-      .grid-2, .grid-3 {
+      .grid-3, .grid-2 {
         grid-template-columns: 1fr;
       }
 
-      section {
-        margin-top: 96px;
+      main section {
+        margin-top: 104px;
+      }
+
+      footer {
+        flex-direction: column;
+        align-items: flex-start;
       }
     }
   </style>
 </head>
 <body>
-  <div class="backdrop" aria-hidden="true">
-    <div class="blob one"></div>
-    <div class="blob two"></div>
-    <div class="blob three"></div>
+  <div class="halo" aria-hidden="true">
+    <span></span>
+    <span></span>
+    <span></span>
   </div>
 
   <div class="page">
-    <nav>
-      <div class="brand">
-        <img src="ks-logo.svg" alt="Krishna Sawale monogram" />
-        <span>Krishna Sawale</span>
-      </div>
-      <div class="nav-links">
-        <a href="#work">Experience</a>
-        <a href="#projects">Projects</a>
-        <a href="#skills">Skills</a>
-        <a href="#contact">Contact</a>
-      </div>
-      <a class="btn btn-light" href="#contact">Let’s collaborate</a>
-    </nav>
-
-    <header class="hero" id="top">
-      <div>
-        <span class="chip">React Native · 5.5+ yrs · Product Builder</span>
-        <h1>Crafted mobile journeys that scale—from streaming to hospitality to fintech.</h1>
-        <p>I’m Krishna Sawale, a React Native developer with 5.5+ years shipping production apps for healthcare, hospitality, fintech, and food delivery brands. I take products from concept to store release, balancing motion-rich UI, Redux-Saga architectures, and native integrations.</p>
-        <div class="hero-actions">
-          <a class="btn btn-primary" href="#projects">View signature work</a>
-          <a class="btn btn-outline" href="#contact">Schedule a conversation</a>
+    <header>
+      <nav data-animate>
+        <div class="brand">
+          <img src="ks-logo.svg" alt="Krishna Sawale monogram" />
+          <div class="brand-text">
+            <strong>KS</strong>
+            <span>React Native Engineer</span>
+          </div>
         </div>
-      </div>
-      <div class="hero-card">
-        <span>React Native Developer</span>
-        <p>Specialized in Redux-Saga, device integrations, and delightful motion for global teams.</p>
-        <span>Pune · Remote-friendly</span>
+        <div class="nav-links">
+          <a href="#work">Experience</a>
+          <a href="#projects">Projects</a>
+          <a href="#skills">Skills</a>
+          <a href="#contact">Contact</a>
+        </div>
+        <a class="btn btn-accent" href="#contact">Let’s collaborate</a>
+      </nav>
+
+      <div class="hero">
+        <div data-animate style="--delay: .1s">
+          <span class="chip">React Native · 5.5+ yrs · Product Builder</span>
+          <h1>Crafting mobile journeys that feel made-to-measure for users and founders.</h1>
+          <p>I architect, build, and ship React Native products that hold up under traction—from premium hospitality flows and streaming platforms to IoT and fintech ecosystems. My process blends motion-rich UI, native integrations, and disciplined delivery rhythms.</p>
+          <div class="contact-actions">
+            <a class="btn btn-accent" href="#projects">View signature work</a>
+            <a class="btn btn-outline" href="#contact">Schedule a conversation</a>
+          </div>
+        </div>
+        <div class="hero-card" data-animate style="--delay: .25s">
+          <span>Focused Practice</span>
+          <strong>React Native Lead</strong>
+          <p>Progressive delivery with Redux-Saga, TypeScript, animations, and native bridges for healthcare, hospitality, and mobility brands.</p>
+          <span>Pune • Remote-friendly</span>
+        </div>
       </div>
     </header>
 
-    <section id="work">
-      <div class="section-heading">
-        <h2>Experience worth trusting</h2>
-        <p>A journey across startups and enterprise partners, delivering resilient React Native apps for streaming, hospitality, logistics, and finance.</p>
-      </div>
-      <div class="grid grid-3">
-        <article class="card">
-          <div class="card-header">
-            <div class="icon-bubble"><img src="icons/food.svg" alt="Food domain icon"></div>
-            <div class="meta">
-              <span>Oct 2024 — Present</span>
-              <h3>Senior Software Developer · React Native</h3>
-              <span>FoodZapp</span>
+    <main>
+      <section id="work">
+        <div class="section-heading" data-animate>
+          <span>Experience</span>
+          <h2>Experience worth trusting</h2>
+          <p>Trusted by founders and global partners to turn product bets into polished releases. From ambitious startups to enterprise hospitality leaders.</p>
+        </div>
+        <div class="grid grid-3">
+          <article class="card" data-animate style="--delay: .05s">
+            <div class="card-header">
+              <div class="icon-bubble"><img src="icons/food.svg" alt="Food delivery icon"></div>
+              <div class="meta">
+                <span>Oct 2024 — Present</span>
+                <h3>Senior Software Developer · React Native</h3>
+                <span>FoodZapp</span>
+              </div>
             </div>
-          </div>
-          <p>Scaling a remote-first food delivery marketplace with rider tracking and loyalty growth loops for the MENA region.</p>
-          <ul class="checklist">
-            <li>Implemented real-time order orchestration with Socket.io and geofencing, lifting delivery transparency metrics.</li>
-            <li>Set up experimentation pipelines and analytics dashboards that increased repeat orders by 18%.</li>
-          </ul>
-        </article>
+            <p>Scaling a remote-first food delivery marketplace with live rider tracking, loyalty loops, and analytics that unlock repeat orders.</p>
+            <ul class="checklist">
+              <li>Rolled out Socket.io orchestration and geofencing for full transparency on deliveries.</li>
+              <li>Built experimentation pipelines and dashboards boosting repeat orders by 18%.</li>
+            </ul>
+          </article>
 
-        <article class="card">
-          <div class="card-header">
-            <div class="icon-bubble"><img src="icons/innovation.svg" alt="Innovation domain icon"></div>
-            <div class="meta">
-              <span>Jul 2023 — Sep 2024</span>
-              <h3>Senior Software Developer · React Native</h3>
-              <span>Mobile Programming LLC</span>
+          <article class="card" data-animate style="--delay: .1s">
+            <div class="card-header">
+              <div class="icon-bubble"><img src="icons/innovation.svg" alt="Innovation icon"></div>
+              <div class="meta">
+                <span>Jul 2023 — Sep 2024</span>
+                <h3>Senior Software Developer · React Native</h3>
+                <span>Mobile Programming LLC</span>
+              </div>
             </div>
-          </div>
-          <p>Consulted across hospitality, property, and fintech programs, translating enterprise requirements into resilient mobile suites.</p>
-          <ul class="checklist">
-            <li>Delivered property and financial management apps with secure authentication and payment gateway integrations.</li>
-            <li>Mentored a squad of five engineers, refining Redux-Saga patterns and automating CI/CD releases.</li>
-          </ul>
-        </article>
+            <p>Consulted across hospitality, property, and fintech squads translating enterprise requirements into resilient mobile suites.</p>
+            <ul class="checklist">
+              <li>Delivered property and financial management apps with secure auth and payments.</li>
+              <li>Mentored five engineers, preserving velocity with robust Redux-Saga patterns.</li>
+            </ul>
+          </article>
 
-        <article class="card">
-          <div class="card-header">
-            <div class="icon-bubble"><img src="icons/hospitality.svg" alt="Hospitality domain icon"></div>
-            <div class="meta">
-              <span>Nov 2021 — Jul 2023</span>
-              <h3>Senior Software Developer · React Native</h3>
-              <span>Tippr</span>
+          <article class="card" data-animate style="--delay: .15s">
+            <div class="card-header">
+              <div class="icon-bubble"><img src="icons/hospitality.svg" alt="Hospitality icon"></div>
+              <div class="meta">
+                <span>Nov 2021 — Jul 2023</span>
+                <h3>Senior Software Developer · React Native</h3>
+                <span>Tippr</span>
+              </div>
             </div>
-          </div>
-          <p>Led the mobile roadmap for luxury hospitality partners including Atlantis Dubai and Raffles worldwide.</p>
-          <ul class="checklist">
-            <li>Crafted immersive guest experience modules with smart-room controls and concierge integrations.</li>
-            <li>Scaled a shared design system and Redux state graph to support multi-brand deployments without regressions.</li>
-          </ul>
-        </article>
+            <p>Helmed the mobile roadmap for luxury hospitality brands including Atlantis Dubai and Raffles worldwide.</p>
+            <ul class="checklist">
+              <li>Built immersive guest experiences with smart-room controls and concierge flows.</li>
+              <li>Scaled a shared design system and Redux state graph for multi-brand rollouts.</li>
+            </ul>
+          </article>
 
-        <article class="card">
-          <div class="card-header">
-            <div class="icon-bubble"><img src="icons/health.svg" alt="Healthcare icon"></div>
-            <div class="meta">
-              <span>Nov 2020 — Nov 2021</span>
-              <h3>React Native Developer</h3>
-              <span>PingB.in</span>
+          <article class="card" data-animate style="--delay: .2s">
+            <div class="card-header">
+              <div class="icon-bubble"><img src="icons/health.svg" alt="Healthcare icon"></div>
+              <div class="meta">
+                <span>Nov 2020 — Nov 2021</span>
+                <h3>React Native Developer</h3>
+                <span>PingB.in</span>
+              </div>
             </div>
-          </div>
-          <p>Built rich communication and live streaming features for a social commerce startup in Ahmedabad.</p>
-          <ul class="checklist">
-            <li>Integrated Agora.io streaming and interactive UI animations that boosted engagement across community rooms.</li>
-            <li>Hardened release quality with Firebase analytics, automated QA dashboards, and crash-free sessions above 99%.</li>
-          </ul>
-        </article>
+            <p>Enabled social commerce live streaming and interactive community experiences for a fast-moving startup.</p>
+            <ul class="checklist">
+              <li>Integrated Agora.io streaming with playful motion design to drive engagement.</li>
+              <li>Raised release quality to 99% crash-free sessions via analytics and QA automation.</li>
+            </ul>
+          </article>
 
-        <article class="card">
-          <div class="card-header">
-            <div class="icon-bubble"><img src="icons/mobility.svg" alt="Mobility icon"></div>
-            <div class="meta">
-              <span>May 2019 — Nov 2020</span>
-              <h3>React Native Developer</h3>
-              <span>Webiots Technologies</span>
+          <article class="card" data-animate style="--delay: .25s">
+            <div class="card-header">
+              <div class="icon-bubble"><img src="icons/mobility.svg" alt="Mobility icon"></div>
+              <div class="meta">
+                <span>May 2019 — Nov 2020</span>
+                <h3>React Native Developer</h3>
+                <span>Webiots Technologies</span>
+              </div>
             </div>
-          </div>
-          <p>Delivered cross-platform retail and IoT experiences for enterprise clients across Surat and beyond.</p>
-          <ul class="checklist">
-            <li>Implemented BLE-powered device modules with Redux-Saga orchestration for seamless hardware sync.</li>
-            <li>Launched Android and iOS apps with sub 0.5% crash rates across six major releases.</li>
-          </ul>
-        </article>
-      </div>
-    </section>
+            <p>Delivered IoT-driven retail experiences and enterprise apps stitched together with reliable BLE and Redux-Saga orchestration.</p>
+            <ul class="checklist">
+              <li>Built BLE-powered device modules that synced hardware seamlessly.</li>
+              <li>Launched Android &amp; iOS apps with <0.5% crash rates across six releases.</li>
+            </ul>
+          </article>
+        </div>
+      </section>
 
-    <section id="projects">
-      <div class="section-heading">
-        <h2>Signature work</h2>
-        <p>Product stories showcasing complex state management, third-party integrations, and crafted user journeys.</p>
-      </div>
-      <div class="grid grid-3">
-        <article class="card">
-          <h3>Zee5 Media Streaming</h3>
-          <p>Enterprise OTT experience delivering video, live events, and push campaigns for millions of viewers across India.</p>
-          <div class="pill-list">
-            <span class="pill">React Native + Redux-Saga</span>
-            <span class="pill">Agora live streaming</span>
-            <span class="pill">1 yr 5 mos</span>
-          </div>
-        </article>
-        <article class="card">
-          <h3>Atlantis Dubai Hospitality</h3>
-          <p>Luxury hospitality management suite featuring in-room dining, door lock integrations, and passport scanning flows.</p>
-          <div class="pill-list">
-            <span class="pill">React Native</span>
-            <span class="pill">Smart-room IoT</span>
-            <span class="pill">1 yr</span>
-          </div>
-        </article>
-        <article class="card">
-          <h3>Raffles Hotel Experience</h3>
-          <p>Guest engagement platform enabling service requests, concierge chat, and dynamic personalization at scale.</p>
-          <div class="pill-list">
-            <span class="pill">Redux state orchestration</span>
-            <span class="pill">Multi-brand design system</span>
-            <span class="pill">11 mos</span>
-          </div>
-        </article>
-        <article class="card">
-          <h3>Asenta Property Management</h3>
-          <p>Property owners manage listings, bookings, and analytics through secure, data-rich mobile dashboards.</p>
-          <div class="pill-list">
-            <span class="pill">React Native</span>
-            <span class="pill">RESTful APIs</span>
-            <span class="pill">9 mos</span>
-          </div>
-        </article>
-        <article class="card">
-          <h3>MoneySync Financial</h3>
-          <p>Pharmacy finance app tracking sales, payments, and reports with real-time dashboards and user auth.</p>
-          <div class="pill-list">
-            <span class="pill">HIPAA-aligned</span>
-            <span class="pill">Payments &amp; invoices</span>
-            <span class="pill">9 mos</span>
-          </div>
-        </article>
-        <article class="card">
-          <h3>HealthSafe Healthcare</h3>
-          <p>Digital healthcare platform for appointment scheduling, teleconsultations, and treatment management.</p>
-          <div class="pill-list">
-            <span class="pill">React Native</span>
-            <span class="pill">Zoom SDK</span>
-            <span class="pill">6 mos</span>
-          </div>
-        </article>
-      </div>
-    </section>
-
-    <section id="skills">
-      <div class="section-heading">
-        <h2>Expertise stack</h2>
-        <p>Core languages, frameworks, and toolsets powering dependable releases across Android and iOS.</p>
-      </div>
-      <div class="grid grid-2">
-        <article class="card">
-          <h3>Frameworks &amp; Libraries</h3>
-          <div class="pill-list">
-            <span class="pill">React Native</span>
-            <span class="pill">React.js</span>
-            <span class="pill">Redux</span>
-            <span class="pill">Redux-Saga</span>
-            <span class="pill">Bootstrap</span>
-            <span class="pill">BLE</span>
-          </div>
-        </article>
-        <article class="card">
-          <h3>Programming Languages</h3>
-          <div class="pill-list">
-            <span class="pill">JavaScript</span>
-            <span class="pill">TypeScript</span>
-          </div>
-        </article>
-        <article class="card">
-          <h3>Mobile Platforms</h3>
-          <div class="pill-list">
-            <span class="pill">Android SDK</span>
-            <span class="pill">iOS (Xcode)</span>
-            <span class="pill">App Store</span>
-            <span class="pill">Play Console</span>
-          </div>
-        </article>
-        <article class="card">
-          <h3>Tools &amp; APIs</h3>
-          <div class="pill-list">
-            <span class="pill">Git</span>
-            <span class="pill">Firebase</span>
-            <span class="pill">Agora.io</span>
-            <span class="pill">Zoom SDK</span>
-            <span class="pill">Socket.io</span>
-            <span class="pill">REST APIs</span>
-          </div>
-        </article>
-      </div>
-    </section>
-
-    <section>
-      <div class="section-heading">
-        <h2>Professional strengths</h2>
-        <p>Principles and practices that make collaborations smooth, outcome-driven, and maintainable.</p>
-      </div>
-      <div class="grid grid-2">
-        <article class="card">
-          Deep understanding of React and React Native internals with a focus on performance tuning.
-        </article>
-        <article class="card">
-          Proficient in architecting complex state with Redux and Redux-Saga across large applications.
-        </article>
-        <article class="card">
-          Write clean, reusable code and review for maintainability across fast-moving squads.
-        </article>
-        <article class="card">
-          Strong problem-solving and debugging skills for production-critical issues.
-        </article>
-        <article class="card">
-          Design user interfaces that deliver seamless, intuitive experiences for global audiences.
-        </article>
-        <article class="card">
-          Track evolving ecosystem updates to keep products modern and secure.
-        </article>
-        <article class="card">
-          Troubleshoot and optimize for scalability while safeguarding user experience and accessibility.
-        </article>
-        <article class="card">
-          Ship to both Play Store and App Store with rigorous release management.
-        </article>
-        <article class="card">
-          Lead and mentor developers, guiding squads toward predictable, high-quality delivery.
-        </article>
-      </div>
-    </section>
-
-    <section>
-      <div class="section-heading">
-        <h2>How I partner</h2>
-        <p>I embed with design, product, and backend teams to shape roadmaps, de-risk launches, and leave your codebase stronger than I found it.</p>
-      </div>
-      <div class="grid grid-3">
-        <article class="card">
-          <h3>Discovery &amp; Vision</h3>
-          Clarify user journeys, align on success metrics, and transform product ideas into a technical blueprint.
-        </article>
-        <article class="card">
-          <h3>Build &amp; Iterate</h3>
-          Deliver pixel-perfect experiences with clean architecture, automated testing, and CI/CD baked in.
-        </article>
-        <article class="card">
-          <h3>Scale &amp; Empower</h3>
-          Coach teams, codify reusable patterns, and hand off with documentation so you can keep shipping confidently.
-        </article>
-      </div>
-    </section>
-
-    <section id="contact">
-      <div class="section-heading">
-        <h2>Let’s build what’s next</h2>
-        <p>Share a brief about your roadmap or the outcomes you’re chasing. I typically respond within a business day with next steps.</p>
-      </div>
-      <div class="contact-grid">
-        <article class="card">
-          <h3>Start a project</h3>
-          <p>Share a quick brief over email with the problem you’re solving, timeline expectations, and the tech stack you’re working with. I’ll follow up with discovery questions or a proposal.</p>
-          <div class="hero-actions">
-            <a class="btn btn-primary" href="mailto:ksawale62@gmail.com">Email Krishna</a>
-            <a class="btn btn-outline" href="tel:+917802877996">Call directly</a>
-          </div>
-          <p style="font-size:0.75rem; letter-spacing:0.28em; text-transform:uppercase; margin-top:12px; color:#94a3c6;">Typical response within 24 hours</p>
-        </article>
-        <article class="card">
-          <h3>Ways to reach me</h3>
-          <p>Prefer async collaboration, yet always ready for focused syncs with founders, product leaders, and engineering teams.</p>
-          <div class="contact-links">
-            <div>
-              <span style="display:block; font-size:0.75rem; letter-spacing:0.28em; text-transform:uppercase; color:#94a3c6;">Email</span>
-              <a href="mailto:ksawale62@gmail.com">ksawale62@gmail.com</a>
+      <section id="projects">
+        <div class="section-heading" data-animate>
+          <span>Selected Projects</span>
+          <h2>Signature work that balances craft and outcomes</h2>
+          <p>Every build marries storytelling, deep state management, and platform-specific finesse to move the metrics that matter.</p>
+        </div>
+        <div class="grid grid-3">
+          <article class="card" data-animate style="--delay: .05s">
+            <h3>Zee5 Media Streaming</h3>
+            <p>Rich OTT platform powering video, live events, and push campaigns for millions across India.</p>
+            <div class="pill-list">
+              <span class="pill">React Native + Redux-Saga</span>
+              <span class="pill">Agora live streaming</span>
+              <span class="pill">Enterprise scale</span>
             </div>
-            <div>
-              <span style="display:block; font-size:0.75rem; letter-spacing:0.28em; text-transform:uppercase; color:#94a3c6;">Phone</span>
-              <a href="tel:+917802877996">+91 7802877996</a>
+          </article>
+          <article class="card" data-animate style="--delay: .1s">
+            <h3>Atlantis Dubai Hospitality</h3>
+            <p>Luxury guest mobile suite with in-room dining, door lock integrations, and passport scanning flows.</p>
+            <div class="pill-list">
+              <span class="pill">Smart-room IoT</span>
+              <span class="pill">React Native</span>
+              <span class="pill">1 yr partnership</span>
             </div>
-            <div>
-              <span style="display:block; font-size:0.75rem; letter-spacing:0.28em; text-transform:uppercase; color:#94a3c6;">GitHub</span>
-              <a href="https://github.com/krixs3112" target="_blank" rel="noopener">github.com/krixs3112</a>
+          </article>
+          <article class="card" data-animate style="--delay: .15s">
+            <h3>Raffles Hotel Experience</h3>
+            <p>Service requests, concierge chat, and personalization at scale with handcrafted UI and automation.</p>
+            <div class="pill-list">
+              <span class="pill">Design system</span>
+              <span class="pill">Redux orchestration</span>
+              <span class="pill">Global rollout</span>
             </div>
-            <div>
-              <span style="display:block; font-size:0.75rem; letter-spacing:0.28em; text-transform:uppercase; color:#94a3c6;">LinkedIn</span>
-              <a href="https://in.linkedin.com/in/krishna-s-bb1417175?trk=profile-badge" target="_blank" rel="noopener">linkedin.com/in/krishna-s-bb1417175</a>
+          </article>
+          <article class="card" data-animate style="--delay: .2s">
+            <h3>Asenta Property Management</h3>
+            <p>Secure dashboards for owners to manage listings, bookings, and analytics in real time.</p>
+            <div class="pill-list">
+              <span class="pill">REST APIs</span>
+              <span class="pill">Analytics</span>
+              <span class="pill">React Native</span>
             </div>
-          </div>
-          <p style="margin-top:auto; font-size:0.92rem; color:#cbd5f5;">Open to senior React Native roles, product engineering squads, and consulting engagements worldwide.</p>
-        </article>
-      </div>
-    </section>
+          </article>
+          <article class="card" data-animate style="--delay: .25s">
+            <h3>MoneySync Financial</h3>
+            <p>Finance companion for pharmacies handling sales, payments, and reporting across teams.</p>
+            <div class="pill-list">
+              <span class="pill">HIPAA-aligned</span>
+              <span class="pill">Payments</span>
+              <span class="pill">Real-time dashboards</span>
+            </div>
+          </article>
+          <article class="card" data-animate style="--delay: .3s">
+            <h3>HealthSafe Healthcare</h3>
+            <p>Digital healthcare platform blending appointment scheduling, teleconsultations, and treatment tracking.</p>
+            <div class="pill-list">
+              <span class="pill">Zoom SDK</span>
+              <span class="pill">React Native</span>
+              <span class="pill">6 mos sprint</span>
+            </div>
+          </article>
+        </div>
+      </section>
 
-    <footer>
-      <span>© 2025 Krishna Sawale. Crafted with care in HTML, CSS, and JavaScript.</span>
-      <nav class="nav-links" style="gap:16px; font-size:0.9rem;">
+      <section id="skills">
+        <div class="section-heading" data-animate>
+          <span>Capabilities</span>
+          <h2>The stack I lean on to ship predictable releases</h2>
+          <p>Tooling that keeps codebases clean, performant, and ready for the next push.</p>
+        </div>
+        <div class="grid grid-2">
+          <article class="card" data-animate style="--delay: .05s">
+            <h3>Frameworks &amp; Libraries</h3>
+            <div class="pill-list">
+              <span class="pill">React Native</span>
+              <span class="pill">React.js</span>
+              <span class="pill">Redux</span>
+              <span class="pill">Redux-Saga</span>
+              <span class="pill">React Query</span>
+              <span class="pill">BLE</span>
+            </div>
+          </article>
+          <article class="card" data-animate style="--delay: .1s">
+            <h3>Programming Languages</h3>
+            <div class="pill-list">
+              <span class="pill">TypeScript</span>
+              <span class="pill">JavaScript</span>
+              <span class="pill">Swift</span>
+              <span class="pill">Kotlin</span>
+            </div>
+          </article>
+          <article class="card" data-animate style="--delay: .15s">
+            <h3>Mobile Platforms</h3>
+            <div class="pill-list">
+              <span class="pill">Android SDK</span>
+              <span class="pill">iOS (Xcode)</span>
+              <span class="pill">App Store</span>
+              <span class="pill">Play Console</span>
+            </div>
+          </article>
+          <article class="card" data-animate style="--delay: .2s">
+            <h3>Tools &amp; APIs</h3>
+            <div class="pill-list">
+              <span class="pill">Git</span>
+              <span class="pill">Firebase</span>
+              <span class="pill">Agora.io</span>
+              <span class="pill">Zoom SDK</span>
+              <span class="pill">Socket.io</span>
+              <span class="pill">REST APIs</span>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section>
+        <div class="section-heading" data-animate>
+          <span>Operating cadence</span>
+          <h2>How we’ll collaborate</h2>
+          <p>Partnership means clarity, velocity, and building for the long term.</p>
+        </div>
+        <div class="grid grid-3 timeline">
+          <article class="card" data-animate style="--delay: .05s">
+            <h3>Discovery &amp; Vision</h3>
+            <p>Shape user journeys, align on success metrics, and derisk the roadmap before code is written.</p>
+          </article>
+          <article class="card" data-animate style="--delay: .1s">
+            <h3>Build &amp; Iterate</h3>
+            <p>Deliver pixel-perfect experiences with modular architecture, automated testing, and healthy CI/CD habits.</p>
+          </article>
+          <article class="card" data-animate style="--delay: .15s">
+            <h3>Scale &amp; Empower</h3>
+            <p>Coach squads, hand over documentation, and leave systems ready for the next team milestone.</p>
+          </article>
+        </div>
+      </section>
+
+      <section>
+        <div class="section-heading" data-animate>
+          <span>Strengths</span>
+          <h2>What teammates count on me for</h2>
+        </div>
+        <div class="grid grid-3 strengths-grid">
+          <article class="card" data-animate style="--delay: .05s">Deep understanding of React Native internals with relentless attention to frame rates.</article>
+          <article class="card" data-animate style="--delay: .08s">Architecting complex state with Redux-Saga, React Query, and modular data layers.</article>
+          <article class="card" data-animate style="--delay: .11s">Shipping clean, peer-reviewed code that stands up to fast-moving product cycles.</article>
+          <article class="card" data-animate style="--delay: .14s">Debugging production issues methodically with observability and crash analytics.</article>
+          <article class="card" data-animate style="--delay: .17s">Designing user interfaces that feel intuitive, accessible, and brand-aligned.</article>
+          <article class="card" data-animate style="--delay: .2s">Tracking ecosystem updates to keep products modern, secure, and store-ready.</article>
+          <article class="card" data-animate style="--delay: .23s">Scaling architectures to new geographies while protecting user experience.</article>
+          <article class="card" data-animate style="--delay: .26s">Stewarding Play Store and App Store releases with disciplined release trains.</article>
+          <article class="card" data-animate style="--delay: .29s">Mentoring engineers and aligning squads around predictable delivery patterns.</article>
+        </div>
+      </section>
+
+      <section id="contact">
+        <div class="section-heading" data-animate>
+          <span>Connect</span>
+          <h2>Let’s build what’s next</h2>
+          <p>Share your roadmap, milestones, or the problem users keep facing. I’ll respond within a business day with next steps.</p>
+        </div>
+        <div class="contact-grid">
+          <article class="card" data-animate style="--delay: .05s">
+            <h3>Start a project</h3>
+            <p>Tell me about the challenge, the platforms you’re targeting, and the momentum you’re chasing. I’ll return with discovery questions or a scoped proposal.</p>
+            <div class="contact-actions">
+              <a class="btn btn-accent" href="mailto:ksawale62@gmail.com">Email Krishna</a>
+              <a class="btn btn-outline" href="tel:+917802877996">Call directly</a>
+            </div>
+            <p style="font-size:0.74rem; letter-spacing:0.28em; text-transform:uppercase; margin-top:22px; color: var(--text-soft);">Typical response within 24 hours</p>
+          </article>
+          <article class="card" data-animate style="--delay: .08s">
+            <h3>Ways to reach me</h3>
+            <p>Prefer async collaboration, yet always ready for focused syncs with founders, product leaders, and engineering teams.</p>
+            <div class="contact-links">
+              <div>
+                <span>Email</span>
+                <a href="mailto:ksawale62@gmail.com">ksawale62@gmail.com</a>
+              </div>
+              <div>
+                <span>Phone</span>
+                <a href="tel:+917802877996">+91 7802877996</a>
+              </div>
+              <div>
+                <span>GitHub</span>
+                <a href="https://github.com/krixs3112" target="_blank" rel="noopener">github.com/krixs3112</a>
+              </div>
+              <div>
+                <span>LinkedIn</span>
+                <a href="https://in.linkedin.com/in/krishna-s-bb1417175?trk=profile-badge" target="_blank" rel="noopener">linkedin.com/in/krishna-s-bb1417175</a>
+              </div>
+            </div>
+            <div style="margin-top:24px;">
+              <div class="badge-base LI-profile-badge" data-locale="en_US" data-size="large" data-theme="dark" data-type="HORIZONTAL" data-vanity="krishna-s-bb1417175" data-version="v1">
+                <a class="badge-base__link LI-simple-link" href="https://in.linkedin.com/in/krishna-s-bb1417175?trk=profile-badge">Krishna S.</a>
+              </div>
+            </div>
+            <p style="margin-top:auto; font-size:0.9rem; color: var(--text-mid);">Open to senior React Native roles, product engineering squads, and consulting engagements worldwide.</p>
+          </article>
+        </div>
+      </section>
+    </main>
+
+    <footer data-animate style="--delay: .05s">
+      <span>© 2025 Krishna Sawale. Crafted with care in HTML, CSS, and sprinkled motion.</span>
+      <nav>
         <a href="#work">Experience</a>
         <a href="#projects">Projects</a>
         <a href="#contact">Contact</a>
       </nav>
     </footer>
   </div>
+
+  <script>
+    const animatedNodes = document.querySelectorAll('[data-animate]');
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    if (!prefersReducedMotion && 'IntersectionObserver' in window) {
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('is-visible');
+            observer.unobserve(entry.target);
+          }
+        });
+      }, {
+        threshold: 0.18,
+        rootMargin: '0px 0px -80px 0px'
+      });
+
+      animatedNodes.forEach((node) => observer.observe(node));
+    } else {
+      animatedNodes.forEach((node) => node.classList.add('is-visible'));
+    }
+
+    document.querySelectorAll('.card').forEach((card) => {
+      if (!card.hasAttribute('tabindex')) {
+        card.setAttribute('tabindex', '0');
+      }
+    });
+
+    const nav = document.querySelector('nav');
+    const toggleNavState = () => {
+      if (window.scrollY > 24) {
+        nav.classList.add('is-scrolled');
+      } else {
+        nav.classList.remove('is-scrolled');
+      }
+    };
+
+    toggleNavState();
+    window.addEventListener('scroll', toggleNavState, { passive: true });
+  </script>
+  <script src="https://platform.linkedin.com/badges/js/profile.js" async defer type="text/javascript"></script>
 </body>
 </html>
